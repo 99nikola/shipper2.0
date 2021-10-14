@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 50px);
+    background-color: rgb(250, 250, 250);
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.storeSlider {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+}
+
+.sortPanel {
+    width: 100%;
+}
