@@ -10,7 +10,6 @@ import StoreView from "./storeView/StoreView";
 import PageNavigation from "./pageNavigation/PageNavigation";
 import AddProduct from "./addProduct/AddProduct";
 import AddProductForm from "./addProductForm/AddProductForm";
-import LoadingProduct from "./loadingProduct/LoadingProduct";
 import ImageSlider from "./imageSlider/ImageSlider";
 import InfoProduct from "./infoProduct/InfoProduct";
 import CheckoutSteps from "./CheckoutSteps/CheckoutSteps";
@@ -33,7 +32,6 @@ export {
     PageNavigation,
     AddProduct,
     AddProductForm,
-    LoadingProduct,
     ImageSlider,
     InfoProduct,
     CheckoutSteps,
