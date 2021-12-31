@@ -1,6 +1,6 @@
 import { Login, Register, Home } from "./pages/Pages";
 import { BrowserRouter, Switch, Route } from "react-router-dom"
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { setAuthorizationToken, useSingleton } from "./utils/utils";
 import { AuthContext } from "./context/auth/AuthContext";
 import { LOGIN_FAILURE, LOGIN_START, LOGIN_SUCCESS, LOGOUT } from "./context/auth/AuthActions";
