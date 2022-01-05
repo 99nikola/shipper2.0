@@ -5,21 +5,23 @@ import Button from "../components/atoms/Button";
 import InputField from "../components/atoms/InputField";
 import { PasswordRule, RequiredRule } from "../rules";
 import Flex from "../components/atoms/Flex.styled";
-import { loginFail, loginUser } from "../store/User/UserActions";
+import { loginUser } from "../store/User/UserActions";
 import { useDispatch, useSelector } from "react-redux";
 import { TRootState } from "../store";
-import { IUserState } from "../typescript";
+import { ILogin, IUserState } from "../typescript";
 import DivError from "../components/styled/DivError";
+import { useRouter } from "next/router";
+import { useCallback } from "react";
 
-interface ILogin {
-    username: string;
-    password: string;
+const onError: SubmitErrorHandler<ILogin> = (error) => {
+    console.error(error);
 }
 
 const Login: NextPage = () => {
     
     const { isFetching, error } = useSelector<TRootState, IUserState>(state => state.user);
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const form = useForm({
         mode: "onSubmit",
@@ -30,15 +32,18 @@ const Login: NextPage = () => {
         }
     });
 
-    const onValid: SubmitHandler<ILogin> = (userCredentials) => {
-        dispatch(loginUser(userCredentials));
+    const onValid: SubmitHandler<ILogin> = useCallback((credentials) => {
+        dispatch(loginUser(credentials, () => router.replace({
+            pathname: "/"
+        })));
+    }, [router]);
 
-        dispatch(loginFail("Something went wrong"));
-    }
+    const handleRedirect = useCallback(() => {
+        router.replace({
+            pathname: "/register"
+        });
+    }, [router]);
 
-    const onError: SubmitErrorHandler<ILogin> = (error) => {
-        console.error(error);
-    }
 
     return (
         <Flex direction="column" alignItems="center" gap="5px" margin="10vh 0 0 0">
@@ -94,6 +99,7 @@ const Login: NextPage = () => {
                         <Button 
                             color="info"
                             disabled={isFetching}
+                            onClick={handleRedirect}
                             >
                             Register insted
                         </Button>
