@@ -29,7 +29,27 @@ const UserReducer = (state = initialUser, action: AnyAction) => {
                 user: action.payload,
                 isFetching: false
             });
-            
+
+        case EUserActions.REGISTER_START:
+            return ({
+                ...state,
+                isFetching: true
+            });
+
+        case EUserActions.REGISTER_FAIL:
+            return ({
+                ...state,
+                isFetching: false,
+                error: action.payload
+            });
+        
+        case EUserActions.REGISTER_SUCCESS:
+            return ({
+                ...state,
+                isFetching: false,
+                user: action.payload
+            });
+
         default: 
             return state;
     }
