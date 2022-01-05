@@ -16,7 +16,7 @@ interface FlexProps {
 }
 
 const Flex = styled("div", {
-    shouldForwardProp: (prop) => prop !== "direction" && prop !== "justifyContent" && prop !== "alignItems"
+    shouldForwardProp: (prop) => prop !== "direction" && prop !== "justifyContent" && prop !== "alignItems" && prop !== "backgroundColor" && prop !== "borderRadius"
 })<FlexProps>(({ direction, gap, width, border, justifyContent, alignItems, margin, backgroundColor, color, borderRadius, padding }) => ({
     display: "flex",
     flexDirection: direction,
