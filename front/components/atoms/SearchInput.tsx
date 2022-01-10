@@ -1,16 +1,16 @@
 import { useTheme } from "@emotion/react";
 import { Theme } from "@mui/material";
 import { BsSearch } from "react-icons/bs"
-import Flex from "./Flex.styled"
+import Flex from "../styled/Flex.styled"
 import InputField from "./InputField"
 
 const SearchInput: React.FC = () => {
     const theme = useTheme() as Theme;
     return (
-        <Flex alignItems="center">
+        <Flex alignItems="center" position="relative">
             <BsSearch style={{
-                position: "relative",
-                left: "30px",
+                position: "absolute",
+                left: ".5rem",
                 color: "black",
                 zIndex: 1,
                 fontSize: theme.iconSize
@@ -19,7 +19,7 @@ const SearchInput: React.FC = () => {
                 label="Search"
                 size="small"
                 color="primary"
-                padding="0 20px"
+                padding="0 0 0 1.5rem"
             />
         </Flex>
     )
