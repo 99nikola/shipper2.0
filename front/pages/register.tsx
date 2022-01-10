@@ -4,12 +4,12 @@ import { Controller, SubmitErrorHandler, SubmitHandler, useForm } from "react-ho
 import Button from "../components/atoms/Button";
 import InputField from "../components/atoms/InputField";
 import { PasswordRule, RequiredRule } from "../rules";
-import Flex from "../components/atoms/Flex.styled";
+import Flex from "../components/styled/Flex.styled";
 import { registerUser } from "../store/User/UserActions";
 import { useDispatch, useSelector } from "react-redux";
 import { TRootState } from "../store";
 import { IRegister, IUserState } from "../typescript";
-import DivError from "../components/styled/DivError";
+import DivError from "../components/atoms/DivError";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 
