@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 
-type LinkProps = NextLinkProps & {
+export type LinkProps = NextLinkProps & {
     aElement?: boolean
 }
 
 const AStyled = styled.a({
-    textDecoration: "none"
+    textDecoration: "none",
+    display: "flex"
 });
 
 const Link: React.FC<LinkProps> = (props) => {
