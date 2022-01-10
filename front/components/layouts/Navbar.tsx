@@ -1,41 +1,66 @@
 import { MdExitToApp, MdMenu } from "react-icons/md";
 import { RiShoppingCart2Line, RiStore3Line } from "react-icons/ri";
 import { CgFeed } from "react-icons/cg";
-import { BsSearch } from "react-icons/bs";
 import { FaShippingFast } from "react-icons/fa";
-import InputField from "../atoms/InputField";
 import Nav from "../styled/Nav.styled";
 import SearchInput from "../atoms/SearchInput";
+import HeaderNoLink from "../styled/HeaderNoLink.styled";
+import HeaderLink from "../atoms/HeaderLink";
+import { Typography } from "@mui/material";
+import MenuList from "../styled/MenuList.styled";
+import MenuListHidden from "../styled/MenuListHidden.styled";
 
 const Navbar: React.FC = (props) => {
     return (
     <>
         <Nav>
-            <span>Shipper</span>
-            <MdMenu />
+            {/* <Typography variant="h4">Shipper</Typography> */}
+            <HeaderNoLink>
+                <MdMenu />
+            </HeaderNoLink>
 
-            <span>MyStore</span>
-            <RiStore3Line />
+            <HeaderLink href="/" aElement={true} passHref={true}>    {/* TODO: href change */}
+                <Typography>MyStore</Typography>
+                <RiStore3Line />
+            </HeaderLink>
 
-            <CgFeed />
-            <span>Feed</span>
+            <HeaderLink href="/" aElement={true} passHref={true}>
+                <Typography>Feed</Typography>
+                <CgFeed />
+            </HeaderLink>
 
             
             <SearchInput />
 
-            <MdExitToApp />
+            <HeaderLink href="/" aElement={true} passHref={true}>
+                <Typography>Logout</Typography>
+                <MdExitToApp />
+            </HeaderLink>
 
-            <FaShippingFast />
-            <span>My Orders</span>
+            <HeaderLink href="/" aElement={true} passHref={true}>
+                <Typography>My Orders</Typography>
+                <FaShippingFast />
+            </HeaderLink>
                      
-            Login
-            or
-            Register
+            <MenuList>
+                <Typography>
+                    Login or Register
+                </Typography>
+
+                <MenuListHidden>
+                    <HeaderLink href="/login" aElement={true} passHref={true}>
+                        <Typography>Login</Typography>
+                    </HeaderLink>
+                    <HeaderLink href="/register" aElement={true} passHref={true}>
+                        <Typography>Register</Typography>
+                    </HeaderLink>
+                </MenuListHidden>
+            </MenuList>
             
-            <label>Login</label>
-            <label>Register</label>
-                  
-            <RiShoppingCart2Line />
+            <HeaderLink href="/" aElement={true} passHref={true}>
+                <Typography>Cart</Typography>
+                <RiShoppingCart2Line />
+            </HeaderLink>
 
         </Nav>
         <main>{props.children}</main>

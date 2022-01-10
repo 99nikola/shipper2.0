@@ -1,9 +1,12 @@
 import { styled } from "@mui/material";
-import Flex from "../atoms/Flex.styled";
 
-const Nav = styled(Flex)(({ theme }) => ({
+const Nav = styled("nav")(({ theme }) => ({
+    display: "flex",
+    justifyContent: "center",
+    gap: ".5rem",
     backgroundColor: theme.color.primary,
-    color: "white",
+    color: theme.color.textOnPrimary,
+    height: "3.25rem"
 }));
 
 
