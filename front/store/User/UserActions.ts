@@ -7,13 +7,18 @@ export enum EUserActions {
     LOGIN_FAIL = "user::LOGIN_FAIL",
     REGISTER_START = "user::REGISTER_START",
     REGISTER_FAIL = "user::REGISTER_FAIL",
-    REGISTER_SUCCESS = "user::REGISTER_SUCCESS"
+    REGISTER_SUCCESS = "user::REGISTER_SUCCESS",
+    LOGOUT = "user::LOGOUT"
+}
+
+export const logoutUser = () => {
+    removeAuthToken();
+    return logout();
 }
 
 export const registerUser = (credentials: IRegister, callback?: Function) => (
     (dispatch: any) => {
         dispatch(registerStart());
-
         if (credentials.password !== credentials.passwordCheck) {
             dispatch(registerFail("Passwords don't match"));
             return;
@@ -77,30 +82,34 @@ export const loginUser = (credentials: ILogin, callback?: Function) => (
     }
 );
 
-export const registerStart = () => ({
+const logout = () => ({
+    type: EUserActions.LOGOUT
+});
+
+const registerStart = () => ({
     type: EUserActions.REGISTER_START
 });
 
-export const registerFail = (error: string) => ({
+const registerFail = (error: string) => ({
     type: EUserActions.REGISTER_FAIL,
     payload: error
 });
 
-export const registerSuccess = (user: IUser) => ({
+const registerSuccess = (user: IUser) => ({
     type: EUserActions.REGISTER_SUCCESS,
     payload: user
 });
 
-export const loginStart = () => ({
+const loginStart = () => ({
     type: EUserActions.LOGIN_START
 });
 
-export const loginSuccess = (user: any) => ({
+const loginSuccess = (user: any) => ({
     type: EUserActions.LOGIN_SUCCESS,
     payload: user
 });
 
-export const loginFail = (error: string) => ({
+const loginFail = (error: string) => ({
     type: EUserActions.LOGIN_FAIL,
     payload: error
 });

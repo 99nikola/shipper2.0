@@ -9,8 +9,22 @@ import HeaderLink from "../atoms/HeaderLink";
 import { Typography } from "@mui/material";
 import MenuList from "../styled/MenuList.styled";
 import MenuListHidden from "../styled/MenuListHidden.styled";
+import { useDispatch, useSelector } from "react-redux";
+import { TRootState } from "../../store";
+import { IUserState } from "../../typescript";
+import { useCallback, useMemo } from "react";
+import { logoutUser } from "../../store/User/UserActions";
 
 const Navbar: React.FC = (props) => {
+
+    const { user } = useSelector<TRootState, IUserState>(state => state.user);
+    const isLogged = useMemo(() => user !== null, [user]);
+    const dispatch = useDispatch();
+
+    const handleLogout = useCallback(() => {
+        dispatch(logoutUser());
+    }, [dispatch]);
+
     return (
     <>
         <Nav>

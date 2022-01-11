@@ -50,6 +50,12 @@ const UserReducer = (state = initialUser, action: AnyAction) => {
                 user: action.payload
             });
 
+        case EUserActions.LOGOUT:
+            return ({
+                ...state,
+                user: null
+            });
+
         default: 
             return state;
     }
