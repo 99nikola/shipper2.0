@@ -33,43 +33,47 @@ const Navbar: React.FC = (props) => {
                 <MdMenu />
             </HeaderNoLink>
 
-            <HeaderLink href="/" aElement={true} passHref={true}>    {/* TODO: href change */}
-                <Typography>MyStore</Typography>
-                <RiStore3Line />
-            </HeaderLink>
+            {isLogged &&
+                <HeaderLink href="/" aElement={true} passHref={true}>
+                    <Typography>MyStore</Typography>
+                    <RiStore3Line />
+                </HeaderLink>}
 
             <HeaderLink href="/" aElement={true} passHref={true}>
                 <Typography>Feed</Typography>
                 <CgFeed />
             </HeaderLink>
 
-            
             <SearchInput />
 
-            <HeaderLink href="/" aElement={true} passHref={true}>
-                <Typography>Logout</Typography>
-                <MdExitToApp />
-            </HeaderLink>
-
-            <HeaderLink href="/" aElement={true} passHref={true}>
-                <Typography>My Orders</Typography>
-                <FaShippingFast />
-            </HeaderLink>
-                     
-            <MenuList>
-                <Typography>
-                    Login or Register
-                </Typography>
-
-                <MenuListHidden>
-                    <HeaderLink href="/login" aElement={true} passHref={true}>
-                        <Typography>Login</Typography>
+            {isLogged 
+                ?
+                <>
+                    <HeaderNoLink onClick={handleLogout}>
+                        <Typography>Logout</Typography>
+                        <MdExitToApp />
+                    </HeaderNoLink>
+                
+                    <HeaderLink href="/" aElement={true} passHref={true}>
+                        <Typography>My Orders</Typography>
+                        <FaShippingFast />
                     </HeaderLink>
-                    <HeaderLink href="/register" aElement={true} passHref={true}>
-                        <Typography>Register</Typography>
-                    </HeaderLink>
-                </MenuListHidden>
-            </MenuList>
+                </>
+                :
+                    <MenuList>
+                        <Typography>
+                            Login or Register
+                        </Typography>
+
+                        <MenuListHidden>
+                            <HeaderLink href="/login" aElement={true} passHref={true}>
+                                <Typography>Login</Typography>
+                            </HeaderLink>
+                            <HeaderLink href="/register" aElement={true} passHref={true}>
+                                <Typography>Register</Typography>
+                            </HeaderLink>
+                        </MenuListHidden>
+                    </MenuList>}
             
             <HeaderLink href="/" aElement={true} passHref={true}>
                 <Typography>Cart</Typography>
