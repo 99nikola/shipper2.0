@@ -7,7 +7,14 @@ const MenuList = styled(HeaderNoLink)(({ theme }) => ({
     "&:hover div": {
         display: "flex",
         width: "100%",
-        borderRadius: "0 0 0.25rem 0.25rem"
+        borderRadius: "0 0 0.25rem 0.25rem",
+        // height: "3.5rem"
+    },
+    "&:hover div a": {
+        height: "2.5rem",
+    },
+    "&:hover div a div": {
+        height: "100%"
     },
     "&:hover": {
         borderRadius: "0.25rem 0.25rem 0 0"
