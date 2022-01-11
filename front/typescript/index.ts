@@ -19,3 +19,8 @@ export interface IUserState {
     error: string | null,
     isFetching: boolean
 }
+
+export interface ISliderItem {
+    id: string | number,
+    src: string
+}
