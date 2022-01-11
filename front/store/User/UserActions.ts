@@ -1,5 +1,5 @@
 import { ILogin, IRegister, IUser } from "../../typescript";
-import { setAuthToken } from "../../utils/auth";
+import { removeAuthToken, setAuthToken } from "../../utils/auth";
 
 export enum EUserActions {
     LOGIN_SUCCESS = "user::LOGIN_SUCCESS",
