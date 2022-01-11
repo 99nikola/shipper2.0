@@ -6,7 +6,9 @@ declare module "@mui/material/styles" {
             primary: string,
             primaryHover: string,
             primaryActive: string,
-            textOnPrimary: string
+            textOnPrimary: string,
+            secondary: string,
+            secondaryHover: string
         },
         iconSize: string
     }
@@ -16,7 +18,9 @@ declare module "@mui/material/styles" {
             primary: string,
             primaryHover: string,
             primaryActive: string,
-            textOnPrimary: string
+            textOnPrimary: string,
+            secondary: string,
+            secondaryHover: string
         },
         iconSize: string
     }
@@ -27,7 +31,9 @@ const theme = createTheme({
         primary: "rgb(167, 132, 119)",
         primaryHover: "rgb(124, 103, 96)",
         primaryActive: "rgb(134, 119, 115)",
-        textOnPrimary: "whitesmoke"
+        textOnPrimary: "whitesmoke",
+        secondary: "#32527b",
+        secondaryHover: "#1B3D81"
     },
     iconSize: "1.5rem"
 });

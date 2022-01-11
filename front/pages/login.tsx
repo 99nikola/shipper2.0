@@ -92,14 +92,14 @@ const Login: NextPage = () => {
                         <Button
                             disabled={isFetching}
                             type="submit"
-                            color="warning"
+                            bgColor="primary"
                             >
                             {isFetching ? "Loading" : "Login"} 
                         </Button>
                         <Button 
-                            color="info"
                             disabled={isFetching}
                             onClick={handleRedirect}
+                            bgColor="secondary"
                             >
                             Register insted
                         </Button>

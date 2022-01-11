@@ -44,12 +44,12 @@ const Register: NextPage = () => {
 
     const handleRedirect = useCallback(() => {
         router.replace({
-            pathname: "/register"
+            pathname: "/login"
         });
     }, [router]);
 
     return (
-        <Flex direction="column" alignItems="center" gap="5px" margin="10vh 0 0 0">
+        <Flex direction="column" alignItems="center" gap="5px" margin="5vh 0 0 0">
             <Typography variant="h2">Shipper</Typography>
 
             <Typography variant="h4">Register</Typography>
@@ -139,15 +139,15 @@ const Register: NextPage = () => {
                         <Button
                             disabled={isFetching}
                             type="submit"
-                            color="warning"
-                            >
+                            bgColor="secondary"
+                        >
                             {isFetching ? "Loading" : "Register"} 
                         </Button>
                         <Button 
-                            color="info"
                             disabled={isFetching}
                             onClick={handleRedirect}
-                            >
+                            bgColor="primary"
+                        >
                             Login insted
                         </Button>
                     </ButtonGroup>
