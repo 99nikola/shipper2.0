@@ -22,5 +22,6 @@ export interface IUserState {
 
 export interface ISliderItem {
     id: string | number,
-    src: string
+    url: string,
+    thumbnailUrl: string
 }
