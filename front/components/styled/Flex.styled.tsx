@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 
 export interface FlexProps {
-    direction?: "column" | "row",
+    direction?: "column" | "row" | "column-reverse" | "row-reverse",
     gap?: string,
     width?: string | number,
     border?: string,
