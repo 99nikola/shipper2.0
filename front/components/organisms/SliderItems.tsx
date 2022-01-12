@@ -1,26 +1,27 @@
 import { useMemo } from "react";
 import { ISliderItem } from "../../typescript";
-import Flex from "../styled/Flex.styled";
+import SliderContainer from "../styled/SliderContainer.styled";
+import SliderItem from "../styled/SliderItem.styled";
 
 export interface SliderItemsProps {
-    items: ISliderItem[]
+    items: ISliderItem[],
+    render: (item: ISliderItem) => React.ReactElement
 }
 
 const SliderItems: React.FC<SliderItemsProps> = (props) => {
 
     const Items = useMemo(() => (
-        props.items.map((item, i) => (
-            <img  
-                key={i}
-                src={item.src}
-            />
+        props.items.map(item => (
+            <SliderItem key={item.id}>
+                {props.render(item)}
+            </SliderItem>
         ))
     ), [props.items]);
 
     return (
-        <Flex>
+        <SliderContainer>
             {Items}
-        </Flex>
+        </SliderContainer>
     );
 }
 

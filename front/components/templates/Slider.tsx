@@ -1,5 +1,4 @@
-import { ISliderItem } from "../../typescript";
-import Button from "../atoms/Button";
+import SliderButton from "../molecules/SliderButton";
 import SliderItems, { SliderItemsProps } from "../organisms/SliderItems";
 import { ArrowLeft, ArrowRight } from "../styled/Arrows.syled";
 import Flex from "../styled/Flex.styled";
@@ -12,21 +11,22 @@ interface SliderProps extends SliderItemsProps {
 const Slider: React.FC<SliderProps> = (props) => {
     return (
         <Flex>
-            <Button 
-                onClick={props.handleLeft}
-            >
-                <ArrowLeft size="2.5rem" />
-            </Button>
-            
-            <SliderItems 
-                items={props.items}
+            <SliderButton
+                slide={props.handleLeft}
+                render={<ArrowLeft size="2.5rem" />}
             />
 
-            <Button
-                onClick={props.handleRight}
-            >
-                <ArrowRight size="2.5rem" />
-            </Button>
+            <Flex direction="row-reverse">
+                <SliderButton
+                    slide={props.handleRight}
+                    render={<ArrowRight size="2.5rem" />}
+                />
+
+                <SliderItems 
+                    items={props.items}
+                    render={props.render}
+                />
+            </Flex>
       </Flex>
     );
 }
