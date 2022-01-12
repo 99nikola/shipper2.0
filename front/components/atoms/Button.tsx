@@ -1,7 +1,9 @@
 import { Button as MuiButton, ButtonProps as MuiButtonProps, styled } from "@mui/material";
+import theme from "../../theme";
 
 type ButtonProps = MuiButtonProps & {
-    bgColor?: "primary" | "secondary"
+    bgColor?: "primary" | "secondary",
+    borderRadius?: string
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -12,26 +14,25 @@ const Button: React.FC<ButtonProps> = (props) => {
     );
 }
 
+const btnColor = new Map([
+    ["primary", {
+        bgColor: theme.color.primaryHover,
+        bgColorHover: theme.color.primaryActive
+    }],
+    ["secondary", {
+        bgColor: theme.color.secondary,
+        bgColorHover: theme.color.secondaryHover
+    }]
+]);
+
 const ButtonStyled = styled(MuiButton, {
-    shouldForwardProp: prop => prop !== "bgColor"
-})<ButtonProps>(({ theme, bgColor }) => {
-
-    let backgroundColor, backgroundColorHover;
-    switch (bgColor) {
-        case "primary":
-            backgroundColor = theme.color.primaryHover;
-            backgroundColorHover = theme.color.primaryActive;
-            break;
-        case "secondary":
-            backgroundColor = theme.color.secondary;
-            backgroundColorHover = theme.color.secondaryHover;
-            break;
-    }
-
+    shouldForwardProp: prop => prop !== "bgColor" && prop !== "borderRadius"
+})<ButtonProps>(({ bgColor, borderRadius }) => {
     return ({
-        backgroundColor,
+        backgroundColor: btnColor.get(bgColor as string)!.bgColor,
+        borderRadius,
         "&:hover": {
-            backgroundColor: backgroundColorHover
+            backgroundColor: btnColor.get(bgColor as string)!.bgColorHover
         }
     });
 });
