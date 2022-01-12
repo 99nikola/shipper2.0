@@ -2,7 +2,7 @@ import { ButtonGroup, Typography } from "@mui/material";
 import { NextPage } from "next";
 import { Controller, SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import Button from "../components/atoms/Button";
-import InputField from "../components/atoms/InputField";
+import InputField from "../components/styled/InputField.styled.";
 import { PasswordRule, RequiredRule } from "../rules";
 import Flex from "../components/styled/Flex.styled";
 import { loginUser } from "../store/User/UserActions";
