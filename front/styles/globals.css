@@ -6,10 +6,10 @@
 
 @keyframes slideLeft {
     from {
-        transform: translateX(0%);
+       left: 0
     }
     to {
-        transform: translateX(-100%);
+        left: calc(-100% - .5rem)
     }
 }
 
@@ -18,6 +18,6 @@
         left: 0
     }
     to {
-        left: 100%
+        left: calc(100% + .5rem)
     }
 }
