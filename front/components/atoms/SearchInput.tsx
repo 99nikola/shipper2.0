@@ -1,8 +1,8 @@
 import { useTheme } from "@emotion/react";
 import { Theme } from "@mui/material";
-import { BsSearch } from "react-icons/bs"
-import Flex from "../styled/Flex.styled"
-import InputField from "../styled/InputField.styled."
+import { BsSearch } from "react-icons/bs";
+import Flex from "../styled/Flex.styled";
+import InputField from "../styled/InputField.styled";
 
 const SearchInput: React.FC = () => {
     const theme = useTheme() as Theme;
