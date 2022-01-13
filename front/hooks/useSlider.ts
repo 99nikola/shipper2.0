@@ -25,17 +25,10 @@ function handleRight(setItems: React.Dispatch<React.SetStateAction<any[]>>) {
     });
 }
 
-type SliderReturn = [
-    items: any[],
-    left: () => void,
-    right: () => void
-]
-
-function useSlider(props: SliderProps): SliderReturn {
+function useSlider(props: SliderProps) {
     
     const [ items, setItems ] = useState(props.items);
-    const visibleItems = useMemo(() => items.slice(0, props.visible), [items, props.visible]);
-
+    
     const left = useCallback(() => {
         handleLeft(setItems);
     }, [setItems]);
@@ -44,10 +37,22 @@ function useSlider(props: SliderProps): SliderReturn {
         handleRight(setItems);
     }, [setItems]);
 
-    if (props.visible >= items.length)
-        return [ items, noaction, noaction ];
+    const slider = useMemo(() => {
+        if (props.visible >= items.length)
+            return ({
+                items,
+                left: noaction,
+                right: noaction
+            });
 
-    return [ visibleItems, left, right ];
+        return ({
+            items: [items[items.length-1], ...items.slice(0, props.visible), items[props.visible]],
+            left,
+            right
+        });
+    }, [items, props.visible]);
+
+    return slider;
 }
 
 export default useSlider;
