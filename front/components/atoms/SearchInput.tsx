@@ -22,7 +22,7 @@ const SearchInput: React.FC = () => {
                 padding="0 0 0 1.5rem"
             />
         </Flex>
-    )
+    );
 }
 
 export default SearchInput
