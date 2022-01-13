@@ -1,9 +1,18 @@
 import { styled } from "@mui/material";
 
+const SliderItem: React.FC = (props) => {
+    return (
+        <div>
+            <SliderItemContainer>
+                {props.children}
+            </SliderItemContainer>
+        </div>
+    )
+}
 
-const SliderItem = styled("div")({
-    animationDuration: "200ms",
-    animationName: "slide"
+const SliderItemContainer = styled("div")({
+    position: "relative"
 });
+
 
 export default SliderItem;
