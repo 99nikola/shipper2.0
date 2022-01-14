@@ -3,12 +3,14 @@ import { forwardRef } from "react";
 
 interface CheckboxProps {
     id?: string,
-    display?: string
+    display?: string,
+    onClick?: () => void
 }
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
     return (
         <Input 
+            onClick={props.onClick}
             type="checkbox" 
             id={props.id}
             display={props.display}
