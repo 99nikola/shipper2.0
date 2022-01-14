@@ -9,18 +9,16 @@ interface HomeProps {
 const Home: NextPage<HomeProps> = (props) => {
 
 	const slider = useSlider({
-		items: props.photos || [],
+		items: props.photos,
 		visible: 4
 	});
 
 	return (
 		<Slider 
-			items={slider.items}
-			slideLeft={slider.left}
-			slideRight={slider.right}
-			render={photo => (
+			slider={slider}
+			render={item => (
 				<img 
-					src={photo.thumbnailUrl}
+					src={item.thumbnailUrl}
 				/>
 			)}
 		/>		

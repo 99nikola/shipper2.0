@@ -1,13 +1,14 @@
 import React, { useCallback, useMemo, useState } from "react";
+import { ISlider, ISliderItem } from "../typescript";
 
 interface SliderProps {
-    items: any[],
+    items: ISliderItem[],
     visible: number
 }
 
 function noaction() {}
 
-function handleLeft(setItems: React.Dispatch<React.SetStateAction<any[]>>) {
+function handleLeft(setItems: React.Dispatch<React.SetStateAction<ISliderItem[]>>) {
     setItems(items => {
         const first = items[0];
         let newItems = items.slice(1);
@@ -16,7 +17,7 @@ function handleLeft(setItems: React.Dispatch<React.SetStateAction<any[]>>) {
     });
 }
 
-function handleRight(setItems: React.Dispatch<React.SetStateAction<any[]>>) {
+function handleRight(setItems: React.Dispatch<React.SetStateAction<ISliderItem[]>>) {
     setItems(items => {
         const last = items[items.length-1];
         let newItems = items.slice(0, items.length-1);
@@ -25,7 +26,7 @@ function handleRight(setItems: React.Dispatch<React.SetStateAction<any[]>>) {
     });
 }
 
-function useSlider(props: SliderProps) {
+function useSlider(props: SliderProps): ISlider {
     
     const [ items, setItems ] = useState(props.items);
     
@@ -42,13 +43,23 @@ function useSlider(props: SliderProps) {
             return ({
                 items,
                 left: noaction,
-                right: noaction
+                right: noaction,
+                specialCase: false
+            });
+
+        if (props.visible + 1 === items.length) 
+            return ({
+                items: [...items, items[0]],
+                left,
+                right,
+                specialCase: true
             });
 
         return ({
-            items: [items[items.length-1], ...items.slice(0, props.visible), items[props.visible]],
+            items: items.slice(0, props.visible+2),
             left,
-            right
+            right,
+            specialCase: false
         });
     }, [items, props.visible]);
 
