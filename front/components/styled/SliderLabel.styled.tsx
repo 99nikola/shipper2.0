@@ -16,6 +16,7 @@ const SliderLabel = styled("label")(({ theme }) => ({
 }));
 
 export const SliderLabelLeft = styled(SliderLabel)<InputLabelProps>({
+    marginRight: ".5rem",
     "& + #slide-left:checked + div .slider-item": {
         animationName: "slideLeft",
         animationDuration: "300ms"
@@ -30,6 +31,7 @@ export const SliderLabelLeft = styled(SliderLabel)<InputLabelProps>({
 });
 
 export const SliderLabelRight = styled(SliderLabel)<InputLabelProps>({
+    marginLeft: ".5rem",
     "& + #slide-right:checked + div > .slider-item": {
         animationName: "slideRight",
         animationDuration: "300ms"
