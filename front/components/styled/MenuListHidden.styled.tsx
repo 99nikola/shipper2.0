@@ -1,6 +1,4 @@
 import { styled } from "@mui/material";
-import HeaderNoLink from "./HeaderNoLink.styled";
-
 
 const MenuListHidden = styled("div")(({ theme }) => ({
     display: "none",
@@ -10,7 +8,11 @@ const MenuListHidden = styled("div")(({ theme }) => ({
     position: "absolute",
     top: "100%",
     left: 0,
-    backgroundColor: theme.color.primary
+    backgroundColor: theme.color.primaryHover,
+    zIndex: 1,
+    "& div:hover": {
+        backgroundColor: theme.color.primary
+    }
 }));
 
 export default MenuListHidden;
