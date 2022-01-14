@@ -10,26 +10,29 @@ interface SliderButtonProps {
 
 const SliderButtonRight: React.FC<SliderButtonProps> = (props) => {
 
-    const checkbox = createRef<HTMLInputElement>();
+    const checkboxRef = createRef<HTMLInputElement>();
+    const labelRef = createRef<HTMLLabelElement>();
 
     const slide = useCallback(() => {
-        if (checkbox.current === null)
+        if (checkboxRef.current === null || labelRef.current === null)
             return;
-        delaySlide(checkbox.current, props.slide);
-    }, [checkbox, props.slide]);
+
+        delaySlide(checkboxRef.current, labelRef.current, props.slide);
+    }, [checkboxRef, labelRef, props.slide]);
 
     return (
     <>
         <SliderLabelRight
-            onClick={slide}
             htmlFor="slide-right"
-        >
+            ref={labelRef}
+            >
             {props.render}
         </SliderLabelRight>
         <Checkbox 
+            onClick={slide}
             id="slide-right"
             display="none"
-            ref={checkbox}
+            ref={checkboxRef}
         />
     </>
     );
