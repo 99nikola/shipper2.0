@@ -6,18 +6,37 @@
 
 @keyframes slideLeft {
     from {
-       left: 0
+       transform: translateX(0%)
     }
     to {
-        left: calc(-100% - .5rem)
+        transform: translateX(calc(-100% - .5rem))
     }
 }
 
 @keyframes slideRight {
     from {
-        left: 0
+        transform: translateX(0%)
     }
     to {
-        left: calc(100% + .5rem)
+        transform: translateX(calc(100% + .5rem))
+    }
+}
+
+
+@keyframes slideLast {
+    from {
+        transform: translateX(calc(100% + .5rem))
+    }
+    to {
+        transform: translateX(0%)
+    }
+}
+
+@keyframes slideFirst {
+    from {
+        transform: translateX(calc(-100% - .5rem))
+    }
+    to {
+        transform: translateX(0%)
     }
 }

@@ -15,18 +15,30 @@ const SliderLabel = styled("label")(({ theme }) => ({
     }
 }));
 
-
 export const SliderLabelLeft = styled(SliderLabel)<InputLabelProps>({
-    "& + #slide-left:checked + div > div > div > div": {
+    "& + #slide-left:checked + div .slider-item": {
         animationName: "slideLeft",
+        animationDuration: "300ms"
+    },
+    "& + #slide-left:checked + div .slider-item:first-of-type": {
+        animationName: "none"
+    },
+    "& + #slide-left:checked + div .slider-item:last-of-type": {
+        animationName: "slideLast",
         animationDuration: "300ms"
     }
 });
 
-
 export const SliderLabelRight = styled(SliderLabel)<InputLabelProps>({
-    "& + #slide-right:checked + div > div > div": {
+    "& + #slide-right:checked + div > .slider-item": {
         animationName: "slideRight",
+        animationDuration: "300ms"
+    },
+    "& + #slide-right:checked + div > .slider-item:last-of-type": {
+        animationName: "none"
+    },
+    "& + #slide-right:checked + div > .slider-item:first-of-type": {
+        animationName: "slideFirst",
         animationDuration: "300ms"
     }
 });
