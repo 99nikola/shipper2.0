@@ -21,7 +21,12 @@ export interface IUserState {
 }
 
 export interface ISliderItem {
-    id: string | number,
-    url: string,
-    thumbnailUrl: string
+    id: string | number
+}
+
+export interface ISlider {
+    items: ISliderItem[],
+    left: () => void,
+    right: () => void,
+    specialCase: boolean
 }
