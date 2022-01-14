@@ -12,13 +12,13 @@ interface SliderProps {
 
 const Slider: React.FC<SliderProps> = (props) => {        
         return (
-            <Flex> 
+            <Flex alignItems="center"> 
                 <SliderButtonLeft
                     slide={props.slider.left}
                     render={<ArrowLeft size="2.5rem" />}
                     />
 
-                <Flex direction="row-reverse">
+                <Flex direction="row-reverse" alignItems="center">
                     <SliderButtonRight
                         slide={props.slider.right}
                         render={<ArrowRight size="2.5rem" />}
