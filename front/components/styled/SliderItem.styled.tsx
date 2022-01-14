@@ -1,16 +1,6 @@
 import { styled } from "@mui/material";
 
-const SliderItem: React.FC = (props) => {
-    return (
-        <div>
-            <SliderItemContainer>
-                {props.children}
-            </SliderItemContainer>
-        </div>
-    )
-}
-
-const SliderItemContainer = styled("div")({
+const SliderItem = styled("div")({
     position: "relative"
 });
 
