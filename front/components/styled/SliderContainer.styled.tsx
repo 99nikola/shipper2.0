@@ -1,10 +1,23 @@
 import { styled } from "@mui/material";
+import { forwardRef, ReactNode } from "react";
 
-const SliderContainer = styled("div")({
+const style = {
+    overflow: "hidden"
+}
+
+const SliderContainer = forwardRef<HTMLDivElement, ReactNode>((props, ref) => (
+    <div style={style}>
+        <MainSliderContainer ref={ref}>
+            {props.children}
+        </MainSliderContainer>
+    </div>
+));
+
+const MainSliderContainer = styled("div")({
     display: "flex",
     gap: ".5rem",
     position: "relative",
-    overflow: "hidden",
+    overflow: "visible",
     "& > .slider-item:first-of-type": {
         position: "absolute",
         left: 0,
