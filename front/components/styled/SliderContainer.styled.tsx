@@ -30,4 +30,6 @@ const MainSliderContainer = styled("div")({
     }
 });
 
+SliderContainer.displayName = "SliderContainer";
+
 export default SliderContainer;

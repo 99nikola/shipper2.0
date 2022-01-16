@@ -36,7 +36,7 @@ const Login: NextPage = () => {
         dispatch(loginUser(credentials, () => router.replace({
             pathname: "/"
         })));
-    }, [router]);
+    }, [router, dispatch]);
 
     const handleRedirect = useCallback(() => {
         router.replace({

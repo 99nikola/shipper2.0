@@ -40,7 +40,7 @@ const Register: NextPage = () => {
         dispatch(registerUser(credentials, () => router.replace({
             pathname: "/"
         })));
-    }, [router]);
+    }, [router, dispatch]);
 
     const handleRedirect = useCallback(() => {
         router.replace({

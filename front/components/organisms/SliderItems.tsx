@@ -26,7 +26,7 @@ const SliderItems = forwardRef<HTMLDivElement, SliderItemsProps>((props, ref) =>
         itemRef.current.addEventListener("resize", handleResize);
 
         return () => itemRef.current?.removeEventListener("resize", handleResize);
-    }, [itemRef, props.setWidth]);
+    }, [itemRef, props.setWidth, handleResize]);
 
     const Items = useMemo(() => (
         props.items.map((item, i) => {
@@ -49,5 +49,7 @@ const SliderItems = forwardRef<HTMLDivElement, SliderItemsProps>((props, ref) =>
         </SliderContainer>
     );
 });
+
+SliderItems.displayName = "SliderItems";
 
 export default SliderItems;

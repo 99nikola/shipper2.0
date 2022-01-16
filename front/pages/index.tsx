@@ -1,6 +1,6 @@
-import type { GetStaticProps, NextPage } from 'next'
-import Slider from '../components/templates/Slider';
-import useSlider from '../hooks/useSlider';
+import type { GetStaticProps, NextPage } from "next"
+import Slider from "../components/templates/Slider";
+import useSlider from "../hooks/useSlider";
 
 interface HomeProps {
 	photos: any[],
@@ -17,8 +17,8 @@ const Home: NextPage<HomeProps> = (props) => {
 		<Slider 
 			slider={slider}
 			render={item => (
-				<img 
-					src={item.thumbnailUrl}
+				<img
+					src={item.thumbnailUrl}					
 				/>
 			)}
 		/>		

@@ -23,7 +23,7 @@ const Slider: React.FC<SliderProps> = (props) => {
             slide(sliderContainer.current, width, EDir.LEFT, props.duration as number)
                 .then(props.slider.left);
 
-        }, [props.slider.left, sliderContainer, width]);
+        }, [props.slider.left, sliderContainer, width, props.duration]);
 
         const slideRight = useCallback(() => {
             if (sliderContainer.current === null || width === undefined)
@@ -32,7 +32,7 @@ const Slider: React.FC<SliderProps> = (props) => {
             slide(sliderContainer.current, width, EDir.RIGHT, props.duration as number)
                 .then(props.slider.right);
 
-        }, [props.slider.right, sliderContainer, width]);
+        }, [props.slider.right, sliderContainer, width, props.duration]);
 
         return (
             <Flex direction="column" alignItems="center"> 
