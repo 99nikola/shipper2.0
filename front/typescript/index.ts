@@ -30,3 +30,5 @@ export interface ISlider {
     right: () => void,
     specialCase: boolean
 }
+
+export type Nullable<T> = T | null;
