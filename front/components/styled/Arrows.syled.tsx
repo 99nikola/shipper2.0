@@ -5,13 +5,13 @@ import { HiArrowCircleLeft, HiArrowCircleRight } from "react-icons/hi";
 
 export const ArrowLeft = styled(HiArrowCircleLeft, {
     shouldForwardProp: prop => prop !== "size"
-})<IconBaseProps>(({ theme, size }) => ({
+})<IconBaseProps>(({ size }) => ({
     fontSize: size
 }));
 
 
 export const ArrowRight = styled(HiArrowCircleRight, {
     shouldForwardProp: prop => prop !== "size"
-})(({ theme, size }) => ({
+})(({ size }) => ({
     fontSize: size
 }));
