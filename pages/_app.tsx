@@ -7,9 +7,6 @@ import theme from "../theme";
 import { ThemeProvider } from '@emotion/react';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-
-	console.log("HELLO");
-	
 	return (
 	<>
 		<Provider store={store}>
