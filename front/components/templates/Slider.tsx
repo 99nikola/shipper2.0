@@ -1,37 +1,58 @@
-import { ISlider, ISliderItem } from "../../typescript";
-import SliderButtonLeft from "../molecules/SliderButtonLeft";
-import SliderButtonRight from "../molecules/SliderButtonRight";
+import { useCallback, useRef, useState } from "react";
+import { EDir, slide } from "../../animations/slide";
+import { ISlider } from "../../typescript";
+import SliderNavigation from "../molecules/SliderNavigation";
 import SliderItems from "../organisms/SliderItems";
-import { ArrowLeft, ArrowRight } from "../styled/Arrows.syled";
 import Flex from "../styled/Flex.styled";
 
 interface SliderProps {
     slider: ISlider,
     render: (item: any) => React.ReactElement,
+    duration?: number
 }
 
-const Slider: React.FC<SliderProps> = (props) => {        
-        return (
-            <Flex alignItems="center"> 
-                <SliderButtonLeft
-                    slide={props.slider.left}
-                    render={<ArrowLeft size="2.5rem" />}
-                    />
+const Slider: React.FC<SliderProps> = (props) => {    
+    
+        const sliderContainer = useRef<HTMLDivElement>(null);
+        const [ width, setWidth ] = useState();
+        
+        const slideLeft = useCallback(() => {
+            if (sliderContainer.current === null || width === undefined)
+                return;
 
-                <Flex direction="row-reverse" alignItems="center">
-                    <SliderButtonRight
-                        slide={props.slider.right}
-                        render={<ArrowRight size="2.5rem" />}
-                        />
+            slide(sliderContainer.current, width, EDir.LEFT, props.duration as number)
+                .then(props.slider.left);
+
+        }, [props.slider.left, sliderContainer, width]);
+
+        const slideRight = useCallback(() => {
+            if (sliderContainer.current === null || width === undefined)
+                return;
+
+            slide(sliderContainer.current, width, EDir.RIGHT, props.duration as number)
+                .then(props.slider.right);
+
+        }, [props.slider.right, sliderContainer, width]);
+
+        return (
+            <Flex direction="column" alignItems="center"> 
                 <SliderItems 
                     items={props.slider.items}
                     render={props.render}
                     specialCase={props.slider.specialCase}
+                    ref={sliderContainer}
+                    setWidth={setWidth}
+                    />
+                <SliderNavigation 
+                    slideLeft={slideLeft}
+                    slideRight={slideRight}
                 />
-
             </Flex>
-      </Flex>
     );
+}
+
+Slider.defaultProps = {
+    duration: 300
 }
 
 export default Slider;
