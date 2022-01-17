@@ -9,12 +9,13 @@ interface HomeProps {
 const Home: NextPage<HomeProps> = (props) => {
 
 	const slider = useSlider({
-		items: props.photos,
+		length: props.photos.length,
 		visible: 4
 	});
 
 	return (
 		<Slider 
+			items={props.photos}
 			slider={slider}
 			render={item => (
 				<img

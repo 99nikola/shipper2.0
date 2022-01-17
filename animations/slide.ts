@@ -5,7 +5,7 @@ export enum EDir {
 
 let animationFrame: number | null = null;
 
-export function slide(element: HTMLElement, distance: number, dir = EDir.RIGHT, duration: number) {
+export function slide(element: HTMLElement, distance: number, dir = EDir.RIGHT, duration: number, stay?: boolean) {
     return new Promise<void>(resolve => {
         if (animationFrame !== null) 
             return;
@@ -29,8 +29,10 @@ export function slide(element: HTMLElement, distance: number, dir = EDir.RIGHT, 
                 animationFrame = window.requestAnimationFrame(step);
             } else {
                 setTimeout(() => {
-                    window.requestAnimationFrame(() => element.style.transform = "translateX(0px)");
-                    animationFrame = null;
+                    if (!stay) {
+                        window.requestAnimationFrame(() => element.style.transform = "translateX(0px)");
+                        animationFrame = null;
+                    }
                     resolve();
                 });
             }

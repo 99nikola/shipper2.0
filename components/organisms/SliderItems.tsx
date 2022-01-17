@@ -6,8 +6,9 @@ import SliderItem from "../styled/SliderItem.styled";
 interface SliderItemsProps {
     items: ISliderItem[],
     render: (item: ISliderItem) => React.ReactElement,
-    specialCase: boolean,
-    setWidth: React.Dispatch<React.SetStateAction<any>>
+    setWidth: React.Dispatch<React.SetStateAction<any>>,
+    left: number,
+    right: number
 }
 
 const SliderItems = forwardRef<HTMLDivElement, SliderItemsProps>((props, ref) => {
@@ -28,18 +29,20 @@ const SliderItems = forwardRef<HTMLDivElement, SliderItemsProps>((props, ref) =>
         return () => itemRef.current?.removeEventListener("resize", handleResize);
     }, [itemRef, props.setWidth, handleResize]);
 
-    const Items = useMemo(() => (
-        props.items.map((item, i) => {
-            let id = item.id;
-            if (props.specialCase && (i==0 || i==props.items.length))
-                id += ("" + i);
-            
-            return (
-                <SliderItem className="slider-item" key={id} ref={i === 0 ? itemRef : undefined}>
+    const Items = useMemo(() => {
+        let items = [];
+
+        for (let i=props.left; i<props.right; i++) {
+            const item = props.items[i];
+            items.push(
+                <SliderItem className="slider-item" key={item.id} ref={i === 0 ? itemRef : undefined}>
                     {props.render(item)}
-                </SliderItem>
+                </SliderItem>   
             );
-        })), [props.items, props.render, props.specialCase, itemRef]);
+        }
+        
+        return items;
+    }, [props.items, props.render, itemRef, props.left, props.right]);
 
     return (
         <SliderContainer

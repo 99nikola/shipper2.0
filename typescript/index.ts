@@ -25,10 +25,19 @@ export interface ISliderItem {
 }
 
 export interface ISlider {
-    items: ISliderItem[],
-    left: () => void,
-    right: () => void,
-    specialCase: boolean
+    left: {
+        src: number;
+        handle: boolean | (() => void);
+    };
+    right: {
+        dest: number;
+        handle: boolean | (() => void);
+    };
 }
 
 export type Nullable<T> = T | null;
+
+export interface ISliderNav {
+    left: number,
+    right: number
+}

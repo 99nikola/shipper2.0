@@ -1,67 +1,81 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { ISlider, ISliderItem } from "../typescript";
+import { ISlider, ISliderItem, ISliderNav } from "../typescript";
 
 interface SliderProps {
-    items: ISliderItem[],
+    length: number
     visible: number
 }
 
-function noaction() {}
-
-function handleLeft(setItems: React.Dispatch<React.SetStateAction<ISliderItem[]>>) {
-    setItems(items => {
-        const first = items[0];
-        let newItems = items.slice(1);
-        newItems.push(first);
-        return newItems;
-    });
+function handleLeft(setNav: React.Dispatch<React.SetStateAction<ISliderNav>>) {
+    setNav(nav => ({
+            left: nav.left + 1,
+            right: nav.right + 1
+    }));
 }
 
-function handleRight(setItems: React.Dispatch<React.SetStateAction<ISliderItem[]>>) {
-    setItems(items => {
-        const last = items[items.length-1];
-        let newItems = items.slice(0, items.length-1);
-        newItems.unshift(last);
-        return newItems;
-    });
+function handleRight(setNav: React.Dispatch<React.SetStateAction<ISliderNav>>) {
+    setNav(nav => ({
+        left: nav.left - 1,
+        right: nav.right - 1
+    }));
 }
 
 function useSlider(props: SliderProps): ISlider {
     
-    const [ items, setItems ] = useState(props.items);
-    
-    const left = useCallback(() => {
-        handleLeft(setItems);
-    }, [setItems]);
-    
-    const right = useCallback(() => {
-        handleRight(setItems);
-    }, [setItems]);
-
-    const slider = useMemo(() => {
-        if (props.visible >= items.length)
+    const [ nav, setNav ] = useState<ISliderNav>(() => {
+        if (props.length === 0)
             return ({
-                items,
-                left: noaction,
-                right: noaction,
-                specialCase: false
+                left: 0,
+                right: 0
             });
 
-        if (props.visible + 1 === items.length) 
+        if (props.length <= props.visible)
             return ({
-                items: [...items, items[0]],
-                left,
-                right,
-                specialCase: true
+                left: 0,
+                right: props.length
+            });
+
+        if (props.length === props.visible+1)
+            return ({
+                left: 0,
+                right: props.visible+1
             });
 
         return ({
-            items: items.slice(0, props.visible+2),
-            left,
-            right,
-            specialCase: false
+            left: 0,
+            right: props.visible+2
         });
-    }, [items, props.visible]);
+    });
+    
+    const left = useCallback(() => {
+        handleLeft(setNav);
+    }, [setNav]);
+    
+    const right = useCallback(() => {
+        handleRight(setNav);
+    }, [setNav]);
+
+    const slider = useMemo(() => {
+        const handleLeft = (nav.right+1) >= props.length 
+            ? false
+            : left;
+
+        const handleRight = (nav.left-1) < 0 
+            ? false
+            : right;
+            
+        return ({
+            left: {
+                src: nav.left,
+                handle: handleLeft
+            },
+            right: {
+                dest: nav.right,
+                handle: handleRight
+            }
+        });
+
+    }, [props.length, props.visible, nav]);
 
     return slider;
 }
