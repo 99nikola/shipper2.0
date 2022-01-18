@@ -1,11 +1,12 @@
 import { ButtonGroup } from "@mui/material";
 import { memo } from "react";
+import { TorB } from "../../typescript";
 import Button from "../atoms/Button";
 import { ArrowLeft, ArrowRight } from "../styled/Arrows.syled";
 
 interface SliderNavigationProps {
-    slideLeft: () => void
-    slideRight: () => void
+    slideLeft: TorB
+    slideRight: TorB
 }
 
 const SliderNavigation: React.FC<SliderNavigationProps> = (props) => {

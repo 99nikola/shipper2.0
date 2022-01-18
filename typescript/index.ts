@@ -32,3 +32,8 @@ export interface ISlider {
 }
 
 export type Nullable<T> = T | null;
+
+export interface TorB {     // Throttle or Debounce
+    (args?: any): void;
+    cancel(): void;
+}
