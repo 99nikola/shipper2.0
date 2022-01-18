@@ -8,15 +8,14 @@ import { ThemeProvider } from '@emotion/react';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
 	return (
-	<>
 		<Provider store={store}>
 			<ThemeProvider theme={theme}>
-				<Navbar>
+				<Navbar />
+				<main>
 					<Component {...pageProps} />
-				</Navbar>
+				</main>
 			</ThemeProvider>
 		</Provider>
-	</>
 	);
 }
 

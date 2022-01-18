@@ -26,7 +26,6 @@ const Navbar: React.FC = (props) => {
     }, [dispatch]);
 
     return (
-    <>
         <Nav>
             {/* <Typography variant="h4">Shipper</Typography> */}
             <HeaderNoLink>
@@ -81,8 +80,6 @@ const Navbar: React.FC = (props) => {
             </HeaderLink>
 
         </Nav>
-        <main>{props.children}</main>
-    </>
     );
 }
 
