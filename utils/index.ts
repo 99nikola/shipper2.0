@@ -8,7 +8,7 @@
  export const throttle = (callBack: (args?: any) => void, delay: number) => {
     let timerId: NodeJS.Timeout | undefined;
     
-    const executor = (args: any) => {
+    const executor = (args?: any) => {
         if (timerId)
             return;
         
