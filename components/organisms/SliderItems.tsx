@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useEffect, useMemo, useRef } from "react";
+import React, { forwardRef, memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { ISliderItem } from "../../typescript";
 import SliderContainer from "../styled/SliderContainer.styled";
 import SliderItem from "../styled/SliderItem.styled";
@@ -14,19 +14,12 @@ const SliderItems = forwardRef<HTMLDivElement, SliderItemsProps>((props, ref) =>
 
     const itemRef = useRef<HTMLDivElement>(null);
 
-    const handleResize = useCallback(() => {
-        props.setWidth(itemRef.current?.offsetWidth);
-    }, [itemRef, props.setWidth]);
-
     useEffect(() => {
         if (itemRef.current === null)
             return;
 
-        props.setWidth(itemRef.current.offsetWidth);
-        itemRef.current.addEventListener("resize", handleResize);
-
-        return () => itemRef.current?.removeEventListener("resize", handleResize);
-    }, [itemRef, props.setWidth, handleResize]);
+        props.setWidth(itemRef.current.clientWidth);
+    }, [itemRef.current, props.setWidth]);
 
     const Items = useMemo(() => (
         props.items.map((item, i) => {
@@ -39,7 +32,7 @@ const SliderItems = forwardRef<HTMLDivElement, SliderItemsProps>((props, ref) =>
                     {props.render(item)}
                 </SliderItem>
             );
-        })), [props.items, props.render, props.specialCase, itemRef]);
+        })), [props.items, props.render, props.specialCase, itemRef.current]);
 
     return (
         <SliderContainer
@@ -52,4 +45,4 @@ const SliderItems = forwardRef<HTMLDivElement, SliderItemsProps>((props, ref) =>
 
 SliderItems.displayName = "SliderItems";
 
-export default SliderItems;
+export default memo(SliderItems);

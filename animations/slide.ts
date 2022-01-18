@@ -3,12 +3,8 @@ export enum EDir {
     RIGHT = "+"
 }
 
-let animationFrame: number | null = null;
-
 export function slide(element: HTMLElement, distance: number, dir = EDir.RIGHT, duration: number) {
     return new Promise<void>(resolve => {
-        if (animationFrame !== null) 
-            return;
 
         let start: DOMHighResTimeStamp, previousTimeStamp: DOMHighResTimeStamp;
         let speed = distance / duration;
@@ -26,16 +22,15 @@ export function slide(element: HTMLElement, distance: number, dir = EDir.RIGHT, 
     
             if (elapsed < duration) {
                 previousTimeStamp = timestamp
-                animationFrame = window.requestAnimationFrame(step);
+                window.requestAnimationFrame(step);
             } else {
                 setTimeout(() => {
                     window.requestAnimationFrame(() => element.style.transform = "translateX(0px)");
-                    animationFrame = null;
                     resolve();
                 });
             }
         }
     
-        animationFrame = window.requestAnimationFrame(step);
+        window.requestAnimationFrame(step);
     });
 }

@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import { EDir, slide } from "../../animations/slide";
 import { ISlider } from "../../typescript";
+import { throttle } from "../../utils";
 import SliderNavigation from "../molecules/SliderNavigation";
 import SliderItems from "../organisms/SliderItems";
 import Flex from "../styled/Flex.styled";
@@ -14,25 +15,25 @@ interface SliderProps {
 const Slider: React.FC<SliderProps> = (props) => {    
     
         const sliderContainer = useRef<HTMLDivElement>(null);
-        const [ width, setWidth ] = useState();
-        
-        const slideLeft = useCallback(() => {
-            if (sliderContainer.current === null || width === undefined)
-                return;
+        const [ chidlWidth, setChildWidth ] = useState();
 
-            slide(sliderContainer.current, width, EDir.LEFT, props.duration as number)
+        const slideLeft = useCallback(throttle(() => {
+            if (sliderContainer.current === null || chidlWidth === undefined)
+            return;
+            
+            slide(sliderContainer.current, chidlWidth, EDir.LEFT, props.duration as number)
                 .then(props.slider.left);
-
-        }, [props.slider.left, sliderContainer, width, props.duration]);
-
-        const slideRight = useCallback(() => {
-            if (sliderContainer.current === null || width === undefined)
-                return;
-
-            slide(sliderContainer.current, width, EDir.RIGHT, props.duration as number)
+            
+        }, props.duration as number), [props.slider.left, sliderContainer.current, chidlWidth, props.duration]);
+        
+        const slideRight = useCallback(throttle(() => {
+            if (sliderContainer.current === null || chidlWidth === undefined)
+            return;
+            
+            slide(sliderContainer.current, chidlWidth, EDir.RIGHT, props.duration as number)
                 .then(props.slider.right);
-
-        }, [props.slider.right, sliderContainer, width, props.duration]);
+            
+        }, props.duration as number), [props.slider.right, sliderContainer.current, chidlWidth, props.duration]);
 
         return (
             <Flex direction="column" alignItems="center"> 
@@ -41,7 +42,7 @@ const Slider: React.FC<SliderProps> = (props) => {
                     render={props.render}
                     specialCase={props.slider.specialCase}
                     ref={sliderContainer}
-                    setWidth={setWidth}
+                    setWidth={setChildWidth}
                     />
                 <SliderNavigation 
                     slideLeft={slideLeft}
