@@ -18,7 +18,8 @@ const Home: NextPage<HomeProps> = (props) => {
 			slider={slider}
 			render={item => (
 				<img
-					src={item.thumbnailUrl}					
+					src={item.thumbnailUrl}	
+					alt={item.title}
 				/>
 			)}
 		/>		
