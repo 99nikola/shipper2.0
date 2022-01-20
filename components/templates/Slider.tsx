@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { EDir, slide } from "../../animations/slide";
 import { ISlider } from "../../typescript";
 import { throttle } from "../../utils";
