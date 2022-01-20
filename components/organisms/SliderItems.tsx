@@ -7,7 +7,7 @@ interface SliderItemsProps {
     items: ISliderItem[],
     render: (item: ISliderItem) => React.ReactElement,
     specialCase: boolean,
-    setWidth: React.Dispatch<React.SetStateAction<any>>
+    resizeObserver?: ResizeObserver
 }
 
 const SliderItems = forwardRef<HTMLDivElement, SliderItemsProps>((props, ref) => {
@@ -15,11 +15,11 @@ const SliderItems = forwardRef<HTMLDivElement, SliderItemsProps>((props, ref) =>
     const itemRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (itemRef.current === null)
+        if (itemRef.current === null || props.resizeObserver === undefined)
             return;
 
-        props.setWidth(itemRef.current.clientWidth);
-    }, [itemRef.current, props.setWidth]);
+        props.resizeObserver.observe(itemRef.current);
+    }, [itemRef, props.resizeObserver]);
 
     const Items = useMemo(() => (
         props.items.map((item, i) => {
